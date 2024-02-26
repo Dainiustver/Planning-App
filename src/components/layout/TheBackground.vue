@@ -1,6 +1,16 @@
 <template>
-  <div class="background"></div>
+  <div :class="{ background: true, front: isSaving }"></div>
 </template>
+
+<script>
+export default {
+  computed: {
+    isSaving() {
+      return this.$store.getters.savingProjects;
+    },
+  },
+};
+</script>
 
 <style scoped>
 .background {
@@ -13,5 +23,10 @@
   background-size: cover;
   filter: blur(5px);
   z-index: -1;
+}
+
+.front {
+  z-index: 1;
+  filter: blur(10px);
 }
 </style>

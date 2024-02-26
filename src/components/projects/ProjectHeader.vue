@@ -18,7 +18,7 @@
     <base-button v-if="isEditing" @click="confirmName">Confirm ✅</base-button>
   </header>
   <p class="error" v-if="!isValid">
-    Project name must not be empty and be up to 30 characters long!
+    Project name must not be empty and up to 30 characters long!
   </p>
 </template>
 
@@ -81,14 +81,12 @@ header {
 }
 
 input {
-  width: 50%; /* Full width */
-  padding: 0.75rem; /* Comfortable padding */
-  border: 1px solid #ccc; /* Subtle border */
-  border-radius: 4px; /* Rounded corners */
-  box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+  width: 50%;
+  padding: 0.75rem; 
+  border: 1px solid #ccc;
+  border-radius: 4px; 
   text-align: center;
-  font-size: 1rem; /* Readable text size */
-  line-height: 1.5; /* Adequate line height for readability */
+  font-size: 1rem;
 }
 
 h2 {
@@ -98,10 +96,9 @@ h2 {
 
 .error {
   color: red;
-  padding: 0.5rem;
+  padding-bottom: 1rem;
 }
 .material-icons {
   cursor: pointer;
-  margin-bottom: 0.75rem;
 }
 </style>

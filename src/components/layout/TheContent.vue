@@ -1,12 +1,15 @@
 <template>
-  <base-container>
+  <main>
     <router-view></router-view>
-  </base-container>
+  </main>
 </template>
 
 <style scoped>
-.content {
-  position: relative;
-  z-index: 1;
+main {
+  background-color: #dccece;
+  min-height: 75vh;
+  width: 50%;
+  margin: 2rem auto;
+  padding: 1rem;
 }
 </style>

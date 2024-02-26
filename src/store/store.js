@@ -9,6 +9,7 @@ const store = createStore({
     return {
       projects: [],
       newSections: 0,
+      savingProjects: false,
     };
   },
   actions: {
@@ -71,6 +72,12 @@ const store = createStore({
         updatedContent: payload.updatedContent,
       });
     },
+    setProjects(context) {
+      context.commit("setProjects");
+    },
+    projectSettingComplete(context) {
+      context.commit("projectSettingComplete");
+    },
   },
   mutations: {
     createProject(state, payload) {
@@ -109,10 +116,19 @@ const store = createStore({
       );
       editedSection.sectionData = payload.updatedContent;
     },
+    setProjects(state) {
+      state.savingProjects = true;
+    },
+    projectSettingComplete(state) {
+      state.savingProjects = false;
+    },
   },
   getters: {
     projects(state) {
       return state.projects;
+    },
+    savingProjects(state) {
+      return state.savingProjects;
     },
   },
 });

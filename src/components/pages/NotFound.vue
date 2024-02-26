@@ -1,12 +1,10 @@
 <template>
-  <div class="flex">
-    <div>
-      <span>
-        ⚠️ Unfortunately, the page you are trying to access was not found. Click
-      </span>
-      <router-link to="/">here</router-link>
-      <span> (or on the navigation above) to go to main page. ⚠️</span>
-    </div>
+  <div class="notFoundCaption">
+    <router-link to="/">
+      ⚠️ Unfortunately, the page you are trying to access was not found. Click
+      on this text (or use the navigation above) to go to Create New Project
+      page. ⚠️
+    </router-link>
   </div>
 </template>
 
@@ -15,12 +13,14 @@ export default {};
 </script>
 
 <style scoped>
-.flex {
-  align-self: center;
+.notFoundCaption {
   text-align: center;
-  color: red;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
   padding: 1rem;
+}
+
+a {
+  color: black;
 }
 </style>

@@ -11,26 +11,45 @@
         <span>{{ section.sectionData }}</span>
       </div>
       <p v-else>Currently there are no sections.</p>
-      <base-button>Commit Project to a Database</base-button>
+      <base-button v-if="!noSections" @click="saveProjectToLocalStorage"
+        >Confirm changes (applies to all edits, including in other
+        projects)</base-button
+      >
+      <base-spinner v-if="isSaving"></base-spinner>
     </div>
   </div>
 </template>
 
 <script>
+import BaseSpinner from "../ui/BaseSpinner.vue";
 export default {
-  props: {
-    sections: Array,
-  },
+  props: ["sections"],
   methods: {
+    saveProjectToLocalStorage() {
+      localStorage.setItem("projects", JSON.stringify(this.projects));
+      this.$store.dispatch("setProjects");
+
+      setTimeout(() => {
+        this.$store.dispatch("projectSettingComplete");
+      }, 2000);
+    },
+
     capitalizeFirstWord(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
     },
   },
   computed: {
+    projects() {
+      return this.$store.getters.projects;
+    },
     noSections() {
       return this.sections.length === 0;
     },
+    isSaving() {
+      return this.$store.getters.savingProjects;
+    },
   },
+  components: { BaseSpinner },
 };
 </script>
 

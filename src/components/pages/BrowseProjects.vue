@@ -85,23 +85,23 @@ header {
   align-items: center;
   margin: 1.5rem;
   position: relative;
-  transform: scale(1.2); /* Ensures a default scale */
-  transition: transform 0.3s ease; /* Applies the transition for both scaling up and down */
+  transform: scale(1.2); 
+  transition: transform 0.3s ease;
 }
 
 .each-project:hover {
-  transform: scale(1.4); /* Scales up when hovered */
+  transform: scale(1.4); 
 }
 
-/* Styling for delete icon next to base-button component */
+
 .delete-icon {
   padding: 0.5rem;
-  margin-left: 15px; /* Adjust based on your layout */
+  margin-left: 15px; 
   border: none;
   background: none;
   color: #ff0000;
   cursor: pointer;
-  font-size: 1.25rem; /* Match the base-button font size for consistency */
+  font-size: 1.25rem;
   transition: color 0.2s ease;
 }
 

@@ -37,6 +37,7 @@ export default {
       if (this.editedSectionName == "" || this.notUniqueSection) {
         this.editedSectionName = "";
         this.formIsValid = false;
+        this.$refs.sectionNameInput.blur();
         return;
       }
       this.$emit("update-section", this.editedSectionName);
@@ -46,10 +47,12 @@ export default {
       this.$emit("close-modal");
     },
   },
+
   computed: {
     notUniqueSection() {
+      let lowercaseInputName = this.editedSectionName.toLowerCase();
       return this.currentProject.sections.some(
-        (section) => section.sectionName === this.editedSectionName
+        (section) => section.sectionName.toLowerCase() === lowercaseInputName
       );
     },
   },

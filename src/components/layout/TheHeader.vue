@@ -23,11 +23,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-image: linear-gradient(
-    to right bottom,
-    #773202,
-    #a75936
-  ); /* Gradient from dark to lighter brown */
+  background-image: linear-gradient(to right bottom, #773202, #a75936);
   padding: 20px 40px;
   color: white;
 }
@@ -35,6 +31,6 @@ header {
 header h1 {
   margin: 0;
   font-size: 2rem;
-  color: #f5deb3; /* Wheat color for the title */
+  color: #f5deb3;
 }
 </style>
