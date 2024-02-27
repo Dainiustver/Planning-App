@@ -109,4 +109,23 @@ export default {
     margin: 1rem 0rem;
   }
 }
+
+@media (min-width: 850px) {
+  h2 {
+    font-size: 2rem;
+  }
+
+  input {
+    width: 20rem;
+    height: 4rem;
+  }
+
+  .material-icons {
+    font-size: 1.5rem;
+  }
+
+  .project__header--edit {
+    font-size: 1.2rem;
+  }
+}
 </style>

@@ -23,4 +23,10 @@ export default {};
 a {
   color: black;
 }
+
+@media (max-width: 1000px) {
+  .notFoundCaption {
+    font-size: 1.5rem;
+  }
+}
 </style>

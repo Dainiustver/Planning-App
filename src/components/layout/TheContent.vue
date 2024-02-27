@@ -15,7 +15,18 @@ main {
 @media (min-width: 360px) {
   main {
     width: 90%;
-    /* height: 90%; */
+  }
+}
+
+@media (min-width: 1000px) {
+  main {
+    width: 70%;
+  }
+}
+
+@media (min-width: 1400px) {
+  main {
+    width: 60%;
   }
 }
 </style>

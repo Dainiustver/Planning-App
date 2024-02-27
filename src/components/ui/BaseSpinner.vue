@@ -11,9 +11,11 @@
   width: 1em;
   height: 1em;
   border-radius: 50%;
-  position: absolute;
+  position: fixed;
   z-index: 2;
-  transform: translateZ(0);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   animation: mltShdSpin 1.7s infinite ease, round 1.7s infinite ease;
 }
 
@@ -55,13 +57,6 @@
   }
   100% {
     transform: rotate(360deg);
-  }
-}
-
-@media (min-width: 360px) {
-  .loader {
-    top: 80%;
-    right: 42%;
   }
 }
 </style>

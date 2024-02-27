@@ -60,7 +60,7 @@ export default {
 
 <style scoped>
 header {
-  padding: 1rem;
+  padding-bottom: 2rem;
   text-align: center;
   color: #333;
 }
@@ -68,7 +68,7 @@ header {
 .each-project {
   display: flex;
   align-items: center;
-  /* position: relative; */
+  margin: 1rem 3rem;
   transform: scale(1.2);
   transition: transform 0.3s ease;
 }
@@ -105,7 +105,6 @@ header {
   }
 
   .each-project {
-    margin: 0.5rem 3rem;
   }
 
   .project__name {
@@ -114,6 +113,33 @@ header {
 
   h2 {
     font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 700px) {
+  h2 {
+    font-size: 2rem;
+  }
+  .project__name {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  h2 {
+    font-size: 2.2rem;
+  }
+  .project__name {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1300px) {
+  h2 {
+    font-size: 2.4rem;
+  }
+  .project__name {
+    font-size: 1.4rem;
   }
 }
 </style>

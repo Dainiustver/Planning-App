@@ -69,7 +69,7 @@ export default {
 
 .section-overview {
   margin-bottom: 1rem;
-  line-height: 1.4;
+  line-height: 1.6;
 }
 
 .section-overview strong {
@@ -90,6 +90,48 @@ export default {
 
   .overview--save__changes {
     font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 850px) {
+  strong,
+  .overview__section--data {
+    font-size: 1.2rem;
+  }
+
+  .overview--save__changes {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  strong,
+  .overview__section--data {
+    font-size: 1.4rem;
+  }
+
+  .overview--save__changes {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1300px) {
+  strong,
+  .overview__section--data {
+    font-size: 1.6rem;
+  }
+  .overview--save__changes {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  strong,
+  .overview__section--data {
+    font-size: 1.8rem;
+  }
+  .overview--save__changes {
+    font-size: 1.6rem;
   }
 }
 </style>

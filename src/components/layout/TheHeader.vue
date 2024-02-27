@@ -49,9 +49,20 @@ header h1 {
     min-height: 5rem;
     width: 10rem;
   }
-
   .button {
     font-size: 0.8rem;
+    margin: 0.2rem 0rem;
+  }
+}
+
+@media (min-width: 700px) {
+  .button__container {
+    flex-direction: row;
+    width: 18rem;
+  }
+  .button {
+    font-size: 1.2rem;
+    margin: 0rem 0.5rem;
   }
 }
 </style>

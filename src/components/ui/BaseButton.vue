@@ -22,7 +22,9 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #692a0c;
+@media (min-width: 1024px) {
+  button:hover {
+    background-color: #692a0c;
+  }
 }
 </style>

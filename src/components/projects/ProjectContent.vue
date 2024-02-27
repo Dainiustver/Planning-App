@@ -41,7 +41,7 @@
           rows="9"
           cols="50"
         />
-        <div class="button">
+        <div class="buttons">
           <base-button @click="confirmSectionContent" class="button"
             >Confirm Changes ✅</base-button
           >
@@ -244,12 +244,19 @@ export default {
   }
 
   .section__data {
-    font-size: 1rem;
+    font-size: 1.2rem;
     overflow-wrap: break-word;
     word-wrap: break-word;
     overflow-x: auto;
     max-width: 100%;
     hyphens: auto;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .button {
@@ -259,6 +266,51 @@ export default {
 
   .material-icons {
     font-size: 1rem;
+  }
+}
+
+@media (min-width: 700px) {
+  .buttons {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .button {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 850px) {
+  .sectionName {
+    font-size: 1.2rem;
+  }
+
+  .section__data {
+    font-size: 1.5rem;
+  }
+
+  .sectionDataEdit {
+    font-size: 1.3rem;
+  }
+
+  .button {
+    font-size: 1.3rem;
+  }
+
+  .material-icons {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .button {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1300px) {
+  .sectionName {
+    font-size: 1.5rem;
   }
 }
 </style>
