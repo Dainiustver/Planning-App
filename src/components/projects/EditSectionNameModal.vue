@@ -11,13 +11,15 @@
         v-model.trim="editedSectionName"
         ref="sectionNameInput"
         placeholder="Enter new section name"
+        maxlength="20"
       />
       <p v-if="!formIsValid" class="invalid">
-        Section name must not be empty or identical to an existing section name!
+        Section name must not be empty / identical to an existing section name /
+        exceed 20 characters!
       </p>
       <div class="modal-footer">
-        <base-button @click="saveChanges">Save</base-button>
-        <base-button @click="closeModal">Cancel</base-button>
+        <base-button class="button" @click="saveChanges">Save</base-button>
+        <base-button class="button" @click="closeModal">Cancel</base-button>
       </div>
     </div>
   </div>
@@ -34,7 +36,11 @@ export default {
   methods: {
     saveChanges() {
       this.formIsValid = true;
-      if (this.editedSectionName == "" || this.notUniqueSection) {
+      if (
+        this.editedSectionName == "" ||
+        this.notUniqueSection ||
+        this.editedSectionName.length > 20
+      ) {
         this.editedSectionName = "";
         this.formIsValid = false;
         this.$refs.sectionNameInput.blur();
@@ -111,5 +117,15 @@ export default {
 
 p {
   padding-bottom: 0.5rem;
+}
+
+@media (min-width: 360px) {
+  .button {
+    font-size: 1rem;
+  }
+
+  .invalid {
+    margin: 0.5rem 0rem;
+  }
 }
 </style>

@@ -15,10 +15,15 @@
 
     <span class="material-icons" v-if="!isEditing" @click="editName">edit</span>
 
-    <base-button v-if="isEditing" @click="confirmName">Confirm ✅</base-button>
+    <base-button
+      v-if="isEditing"
+      @click="confirmName"
+      class="project__header--edit"
+      >Confirm ✅</base-button
+    >
   </header>
   <p class="error" v-if="!isValid">
-    Project name must not be empty and up to 30 characters long!
+    Project name must not be empty and up to 15 characters long!
   </p>
 </template>
 
@@ -44,7 +49,7 @@ export default {
 
       if (
         this.updatedProjectName === "" ||
-        this.updatedProjectName.length > 30
+        this.updatedProjectName.length > 15
       ) {
         this.isValid = false;
         return;
@@ -73,32 +78,35 @@ export default {
 </script>
 
 <style scoped>
-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
+@media (min-width: 360px) {
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
 
-input {
-  width: 50%;
-  padding: 0.75rem; 
-  border: 1px solid #ccc;
-  border-radius: 4px; 
-  text-align: center;
-  font-size: 1rem;
-}
+  input {
+    border-radius: 4px;
+    text-align: center;
+    width: 15rem;
+    height: 3rem;
+  }
 
-h2 {
-  font-size: 2rem;
-  padding: 0 1rem;
-}
+  .project__header--edit {
+    font-size: 1rem;
+    margin: 1rem 0rem;
+  }
 
-.error {
-  color: red;
-  padding-bottom: 1rem;
-}
-.material-icons {
-  cursor: pointer;
+  .error {
+    color: red;
+    padding-bottom: 1rem;
+  }
+
+  .material-icons {
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 1rem 0rem;
+  }
 }
 </style>

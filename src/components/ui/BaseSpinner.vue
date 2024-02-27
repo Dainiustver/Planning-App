@@ -13,8 +13,6 @@
   border-radius: 50%;
   position: absolute;
   z-index: 2;
-  top: 40%;
-  right: 50%;
   transform: translateZ(0);
   animation: mltShdSpin 1.7s infinite ease, round 1.7s infinite ease;
 }
@@ -57,6 +55,13 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media (min-width: 360px) {
+  .loader {
+    top: 80%;
+    right: 42%;
   }
 }
 </style>

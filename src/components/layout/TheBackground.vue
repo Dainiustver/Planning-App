@@ -4,6 +4,11 @@
 
 <script>
 export default {
+  watch: {
+    isSaving(newValue) {
+      document.body.style.overflow = newValue ? "hidden" : "";
+    },
+  },
   computed: {
     isSaving() {
       return this.$store.getters.savingProjects;
@@ -27,6 +32,6 @@ export default {
 
 .front {
   z-index: 1;
-  filter: blur(10px);
+  filter: blur(2px) drop-shadow(0px 0px 0px black);
 }
 </style>

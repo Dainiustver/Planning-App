@@ -3,12 +3,12 @@
     <router-link to="/">
       <h1>Planning App</h1>
     </router-link>
-    <div>
+    <div class="button__container">
       <router-link to="/new-project">
-        <base-button>New Project</base-button>
+        <base-button class="button">New Project</base-button>
       </router-link>
       <router-link to="/browse-projects">
-        <base-button>Browse Projects</base-button>
+        <base-button class="button">Browse Projects</base-button>
       </router-link>
     </div>
   </header>
@@ -20,17 +20,38 @@ export default {};
 
 <style scoped>
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background-image: linear-gradient(to right bottom, #773202, #a75936);
-  padding: 20px 40px;
   color: white;
 }
 
 header h1 {
-  margin: 0;
-  font-size: 2rem;
   color: #f5deb3;
+}
+
+@media (min-width: 360px) {
+  header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1rem;
+  }
+  header h1 {
+    font-size: 2rem;
+    width: 10rem;
+    text-align: center;
+  }
+
+  .button__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 5rem;
+    width: 10rem;
+  }
+
+  .button {
+    font-size: 0.8rem;
+  }
 }
 </style>

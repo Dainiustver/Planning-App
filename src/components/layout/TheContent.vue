@@ -7,9 +7,15 @@
 <style scoped>
 main {
   background-color: #dccece;
-  min-height: 75vh;
   width: 50%;
   margin: 2rem auto;
   padding: 1rem;
+}
+
+@media (min-width: 360px) {
+  main {
+    width: 90%;
+    /* height: 90%; */
+  }
 }
 </style>

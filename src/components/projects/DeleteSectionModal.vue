@@ -5,8 +5,10 @@
         Are you sure you want to delete this section?
       </div>
       <div class="modal-footer">
-        <base-button class="delete" @click="confirmDelete">Delete</base-button>
-        <base-button @click="closeModal">Cancel</base-button>
+        <base-button class="button delete" @click="confirmDelete"
+          >Delete</base-button
+        >
+        <base-button class="button" @click="closeModal">Cancel</base-button>
       </div>
     </div>
   </div>
@@ -64,5 +66,15 @@ export default {
 
 .delete:hover {
   background-color: rgb(158, 14, 14);
+}
+
+@media (min-width: 360px) {
+  .modal-header {
+    margin-bottom: 1rem 0rem;
+  }
+
+  .button {
+    font-size: 1rem;
+  }
 }
 </style>

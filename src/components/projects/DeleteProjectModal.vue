@@ -68,4 +68,11 @@ export default {
 .delete:hover {
   background-color: rgb(158, 14, 14);
 }
+
+@media (min-width: 360px) {
+  .modal-header {
+    text-align: center;
+    font-size: 1rem;
+  }
+}
 </style>

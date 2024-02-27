@@ -8,10 +8,13 @@
         class="section-overview"
       >
         <strong>{{ capitalizeFirstWord(section.sectionName) }}:</strong>
-        <span>{{ section.sectionData }}</span>
+        <span class="overview__section--data">{{ section.sectionData }}</span>
       </div>
       <p v-else>Currently there are no sections.</p>
-      <base-button v-if="!noSections" @click="saveProjectToLocalStorage"
+      <base-button
+        v-if="!noSections"
+        @click="saveProjectToLocalStorage"
+        class="overview--save__changes"
         >Confirm changes (applies to all edits, including in other
         projects)</base-button
       >
@@ -55,23 +58,38 @@ export default {
 
 <style scoped>
 .overview-container {
-  padding: 2rem;
+  padding: 1.5rem;
   background-color: #f0f0f0;
   min-height: 50vh;
-  margin-top: 2rem;
+  margin: 1rem auto;
   font-size: 1.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
 
 .section-overview {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   line-height: 1.4;
-  word-break: break-all;
 }
 
 .section-overview strong {
   margin-right: 0.5rem;
   color: #333;
+}
+
+@media (min-width: 360px) {
+  strong,
+  .overview__section--data {
+    font-size: 1rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    overflow-x: auto;
+    max-width: 100%;
+    hyphens: auto;
+  }
+
+  .overview--save__changes {
+    font-size: 0.9rem;
+  }
 }
 </style>
