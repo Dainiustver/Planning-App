@@ -18,7 +18,7 @@
         >Confirm changes (applies to all edits, including in other
         projects)</base-button
       >
-      <base-spinner v-if="isSaving"></base-spinner>
+      <p class="overview--save__projects" v-if="projectsSaved">Success!</p>
     </div>
   </div>
 </template>
@@ -26,15 +26,19 @@
 <script>
 import BaseSpinner from "../ui/BaseSpinner.vue";
 export default {
+  data() {
+    return {
+      projectsSaved: false,
+    };
+  },
   props: ["sections"],
   methods: {
     saveProjectToLocalStorage() {
       localStorage.setItem("projects", JSON.stringify(this.projects));
-      this.$store.dispatch("setProjects");
-
+      this.projectsSaved = true;
       setTimeout(() => {
-        this.$store.dispatch("projectSettingComplete");
-      }, 2000);
+        this.projectsSaved = false;
+      }, 3000);
     },
 
     capitalizeFirstWord(str) {
@@ -47,9 +51,6 @@ export default {
     },
     noSections() {
       return this.sections.length === 0;
-    },
-    isSaving() {
-      return this.$store.getters.savingProjects;
     },
   },
   components: { BaseSpinner },
@@ -75,6 +76,11 @@ export default {
 .section-overview strong {
   margin-right: 0.5rem;
   color: #333;
+}
+
+.overview--save__projects {
+  color: green;
+  margin-top: 1rem;
 }
 
 @media (min-width: 360px) {

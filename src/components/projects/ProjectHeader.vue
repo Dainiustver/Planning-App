@@ -84,6 +84,7 @@ export default {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin-top: 1rem;
   }
 
   input {
@@ -117,7 +118,7 @@ export default {
 
   input {
     width: 20rem;
-    height: 4rem;
+    height: 3rem;
   }
 
   .material-icons {
@@ -126,6 +127,12 @@ export default {
 
   .project__header--edit {
     font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1300px) {
+  .project__header--edit {
+    font-size: 1.5rem;
   }
 }
 </style>

@@ -11,11 +11,15 @@
         <base-button class="button">Browse Projects</base-button>
       </router-link>
     </div>
+    <auth-component></auth-component>
   </header>
 </template>
 
 <script>
-export default {};
+import AuthComponent from "../projects/AuthComponent.vue";
+export default {
+  components: { AuthComponent },
+};
 </script>
 
 <style scoped>
@@ -31,13 +35,12 @@ header h1 {
 @media (min-width: 360px) {
   header {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: 1rem 0.5rem;
   }
   header h1 {
-    font-size: 2rem;
-    width: 10rem;
+    font-size: 1.2rem;
     text-align: center;
   }
 
@@ -46,23 +49,58 @@ header h1 {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    min-height: 5rem;
-    width: 10rem;
   }
   .button {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     margin: 0.2rem 0rem;
   }
 }
 
+@media (min-width: 400px) {
+  header {
+    justify-content: space-around;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+}
+
 @media (min-width: 700px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
   .button__container {
     flex-direction: row;
-    width: 18rem;
+  }
+  .button {
+    font-size: 0.8rem;
+    margin: 0rem 0.2rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  header h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  header h1 {
+    font-size: 2.2rem;
+  }
+
+  .button {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1500px) {
+  header h1 {
+    font-size: 2.5rem;
   }
   .button {
     font-size: 1.2rem;
-    margin: 0rem 0.5rem;
   }
 }
 </style>
