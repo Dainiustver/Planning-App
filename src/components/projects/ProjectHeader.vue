@@ -88,6 +88,7 @@ export default {
   }
 
   input {
+    border: solid 0.15rem;
     border-radius: 4px;
     text-align: center;
     width: 15rem;

@@ -12,11 +12,23 @@
       </div>
       <form class="auth__details">
         <label for="email">E-mail</label>
-        <input type="text" name="email" v-model="email" />
+        <input type="email" name="email" v-model="email" ref="signupEmail" />
         <label for="password">Password</label>
-        <input type="text" name="password" v-model="password" />
+        <input
+          type="password"
+          name="password"
+          v-model="password"
+          ref="signupPassword"
+        />
       </form>
-      <p v-if="authCaption !== ''" class="auth--caption">
+      <p v-if="formIsValid === false" class="invalid">
+        Please fill the form correctly!
+      </p>
+      <p
+        v-if="authCaption !== ''"
+        class="auth--caption"
+        :style="{ color: authenticationSuccessful }"
+      >
         {{ authCaption }}
       </p>
       <div class="auth__actions">
@@ -33,7 +45,7 @@
       <div class="auth__header">
         <h3>{{ authMode.toUpperCase() }}</h3>
       </div>
-      <p class="auth--caption">
+      <p class="auth--caption" :style="{ color: authenticationSuccessful }">
         {{ authCaption }}
       </p>
       <div class="auth__actions">
@@ -48,11 +60,23 @@
       </div>
       <form class="auth__details">
         <label for="email">E-mail</label>
-        <input type="text" name="email" v-model="email" />
+        <input type="email" name="email" v-model="email" ref="loginEmail" />
         <label for="password">Password</label>
-        <input type="text" name="password" v-model="password" />
+        <input
+          type="password"
+          name="password"
+          v-model="password"
+          ref="loginPassword"
+        />
       </form>
-      <p v-if="authCaption !== ''" class="auth--caption">
+      <p v-if="formIsValid === false" class="invalid">
+        Please fill the form correctly!
+      </p>
+      <p
+        v-if="authCaption !== ''"
+        class="auth--caption"
+        :style="{ color: loginSuccessful }"
+      >
         {{ authCaption }}
       </p>
       <div class="auth__actions">
@@ -69,12 +93,9 @@
       <div class="auth__header">
         <h3>{{ authMode.toUpperCase() }}</h3>
       </div>
-      <p class="auth--caption">
+      <p class="auth--caption" :style="{ color: loginSuccessful }">
         {{ authCaption }}
       </p>
-      <div class="auth__actions">
-        <base-button @click="$emit('close-auth-modal')">Zjbs seni</base-button>
-      </div>
     </div>
 
     <div v-if="isAuthenticating">
@@ -98,18 +119,25 @@ export default {
       authSuccess: null,
       loginSuccess: null,
       authCaption: "",
+      formIsValid: true,
     };
   },
   methods: {
     confirmAuth() {
-      // this.$emit("close-auth-modal");
+      const isValid = this.validateForm();
+      this.formIsValid = isValid;
+
+      if (!isValid) {
+        return;
+      }
+
       this.authMode === "signup" ? this.signup() : this.login();
     },
     async signup() {
       this.isAuthenticating = true;
       this.authSuccess = null;
       try {
-        const signupRes = await axios.post("/api/site/register", {
+        await axios.post("/api/site/register", {
           email: this.email,
           password: this.password,
         });
@@ -119,7 +147,6 @@ export default {
           this.capitalizeFirstWord(this.authMode) + " succesful!";
         this.email = "";
         this.password = "";
-        console.log(signupRes);
       } catch (err) {
         this.isAuthenticating = false;
         this.authSuccess = false;
@@ -165,8 +192,54 @@ export default {
     cancelAuth() {
       this.$emit("close-auth-modal");
     },
+
+    validateForm() {
+      if (this.authMode === "signup") {
+        if (
+          this.email === "" ||
+          this.password === "" ||
+          !this.email.includes("@")
+        ) {
+          return false;
+        }
+      }
+
+      if (this.authMode === "login") {
+        if (
+          this.email === "" ||
+          this.password === "" ||
+          !this.email.includes("@")
+        ) {
+          return false;
+        }
+      }
+
+      return true;
+    },
+
     capitalizeFirstWord(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
+    },
+  },
+  computed: {
+    authenticationSuccessful() {
+      if (this.authSuccess) {
+        return "green";
+      } else if (this.authSuccess === false) {
+        return "red";
+      } else {
+        return "black";
+      }
+    },
+
+    loginSuccessful() {
+      if (this.loginSuccess) {
+        return "green";
+      } else if (this.loginSuccess === false) {
+        return "red";
+      } else {
+        return "black";
+      }
     },
   },
   props: ["authType"],
@@ -191,13 +264,13 @@ export default {
 .auth__header,
 .auth__details,
 .auth__actions,
-.auth--caption {
+.auth--caption,
+.invalid {
   color: black;
   background-color: #fff;
   padding: 1.5rem;
   box-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.1);
   width: 25rem;
-
   text-align: center;
 }
 
@@ -217,11 +290,11 @@ export default {
   padding: 1.5rem;
 }
 
-.auth__details input[type="text"] {
+input {
   padding: 0.5rem;
-  border: 1px solid #624c4c;
-  border-radius: 0.2rem;
   margin-bottom: 1rem;
+  border: 2px solid;
+  border-radius: 0.5rem;
 }
 
 .auth__actions {
@@ -233,5 +306,9 @@ export default {
 .primary__action,
 .secondary__action {
   padding: 0.5rem 1.5rem;
+}
+
+.invalid {
+  color: red;
 }
 </style>
