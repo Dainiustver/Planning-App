@@ -8,7 +8,9 @@ const store = createStore({
   state() {
     return {
       projects: [],
+      userLoggedIn: false,
       newSections: 0,
+      loadingProjects: false,
     };
   },
   actions: {
@@ -71,6 +73,15 @@ const store = createStore({
         updatedContent: payload.updatedContent,
       });
     },
+    login(context) {
+      context.commit("login");
+    },
+    logout(context) {
+      context.commit("logout");
+    },
+    loadingProjects(context, modifier) {
+      context.commit("loadingProjects", modifier);
+    },
   },
   mutations: {
     createProject(state, payload) {
@@ -109,10 +120,25 @@ const store = createStore({
       );
       editedSection.sectionData = payload.updatedContent;
     },
+    login(state) {
+      state.userLoggedIn = true;
+    },
+    logout(state) {
+      state.userLoggedIn = false;
+    },
+    loadingProjects(state, modifier) {
+      state.loadingProjects = modifier;
+    },
   },
   getters: {
     projects(state) {
       return state.projects;
+    },
+    isLoggedIn(state) {
+      return state.userLoggedIn;
+    },
+    loadingProjects(state) {
+      return state.loadingProjects;
     },
   },
 });

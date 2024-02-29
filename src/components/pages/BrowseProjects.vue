@@ -2,9 +2,10 @@
   <header>
     <h2>Your previous projects</h2>
   </header>
-  <div v-if="noProjects" class="no-projects">
+  <div v-if="noProjects && !loadingProjects" class="no-projects">
     <h3>Currently you have no projects.</h3>
   </div>
+  <base-spinner v-if="loadingProjects"></base-spinner>
   <div v-else class="project-layout">
     <div class="each-project" v-for="project in projects" :key="project.id">
       <base-button @click="navigate(project.id)">
@@ -27,6 +28,7 @@
 </template>
 
 <script>
+import BaseSpinner from "../ui/BaseSpinner.vue";
 import DeleteProject from "../projects/DeleteProjectModal.vue";
 export default {
   data() {
@@ -43,6 +45,9 @@ export default {
     noProjects() {
       return this.projects.length === 0;
     },
+    loadingProjects() {
+      return this.$store.getters.loadingProjects;
+    },
   },
   methods: {
     navigate(id) {
@@ -54,7 +59,7 @@ export default {
       this.deleteModalOpen = true;
     },
   },
-  components: { DeleteProject },
+  components: { DeleteProject, BaseSpinner },
 };
 </script>
 

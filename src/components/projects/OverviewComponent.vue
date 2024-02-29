@@ -13,32 +13,83 @@
       <p v-else>Currently there are no sections.</p>
       <base-button
         v-if="!noSections"
-        @click="saveProjectToLocalStorage"
+        @click="saveProjects"
         class="overview--save__changes"
         >Confirm changes (applies to all edits, including in other
         projects)</base-button
       >
-      <p class="overview--save__projects" v-if="projectsSaved">Success!</p>
+      <base-spinner v-if="projectsSaved === false"></base-spinner>
+      <p class="overview--save__projects" v-if="projectsSaved === true">
+        Success!
+      </p>
+      <p class="error" v-if="errorCaption !== ''">
+        {{ errorCaption }}
+      </p>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import BaseSpinner from "../ui/BaseSpinner.vue";
 export default {
   data() {
     return {
-      projectsSaved: false,
+      projectsSaved: null,
+      errorCaption: "",
     };
   },
   props: ["sections"],
   methods: {
-    saveProjectToLocalStorage() {
-      localStorage.setItem("projects", JSON.stringify(this.projects));
-      this.projectsSaved = true;
-      setTimeout(() => {
-        this.projectsSaved = false;
-      }, 3000);
+    async saveProjects() {
+      if (!this.$store.getters.isLoggedIn) {
+        localStorage.setItem("projects", JSON.stringify(this.projects));
+        this.projectsSaved = true;
+      }
+
+      if (this.$store.getters.isLoggedIn) {
+        try {
+          this.projectsSaved = false;
+          await axios.post(
+            "/api/project/delete-all",
+            {},
+            {
+              headers: { "Auth-Token": localStorage.getItem("token") },
+            }
+          );
+
+          const vuexProjects = this.$store.getters.projects;
+
+          for (const project of vuexProjects) {
+            await axios.post(
+              "/api/project/create",
+              {
+                title: project.name,
+                description: JSON.stringify({
+                  id: project.id,
+                  sections: project.sections,
+                }),
+              },
+
+              {
+                headers: { "Auth-Token": localStorage.getItem("token") },
+              }
+            );
+          }
+
+          localStorage.removeItem("projects");
+          this.projectsSaved = true;
+          setTimeout(() => {
+            this.projectsSaved = null;
+          }, 5000);
+        } catch (e) {
+          this.errorCaption =
+            "Something went wrong! Error message: " +
+            e.message +
+            ". Please try again later or contact the administrator if you think this is a mistake";
+          this.projectsSaved = null;
+        }
+      }
     },
 
     capitalizeFirstWord(str) {
@@ -81,6 +132,11 @@ export default {
 .overview--save__projects {
   color: green;
   margin-top: 1rem;
+}
+
+.error {
+  color: red;
+  margin-top: 2rem;
 }
 
 @media (min-width: 360px) {

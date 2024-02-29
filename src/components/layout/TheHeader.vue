@@ -11,13 +11,28 @@
         <base-button class="button">Browse Projects</base-button>
       </router-link>
     </div>
-    <auth-component></auth-component>
+
+    <auth-component v-if="!userLoggedIn"></auth-component>
+    <div v-else>
+      <base-button class="button" @click="logout">Log out</base-button>
+    </div>
   </header>
 </template>
 
 <script>
 import AuthComponent from "../projects/AuthComponent.vue";
 export default {
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+      localStorage.removeItem("token");
+    },
+  },
+  computed: {
+    userLoggedIn() {
+      return this.$store.state.userLoggedIn;
+    },
+  },
   components: { AuthComponent },
 };
 </script>

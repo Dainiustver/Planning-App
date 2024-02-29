@@ -1,8 +1,17 @@
 <template>
+  <div class="backdrop"></div>
   <span class="loader"></span>
 </template>
 
 <style scoped>
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 .loader {
   color: #ffffff;
   font-size: 45px;
