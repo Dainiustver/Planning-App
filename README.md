@@ -1,1 +1,1 @@
-This is the second version of my Planning App. Currently work in progress :)
+Planning App. Live (might not be current version) at https://planning.news-grip.com/
